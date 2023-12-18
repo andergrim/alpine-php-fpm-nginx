@@ -17,7 +17,7 @@ jobs:
         id: prepare
         run: |
           GHCR_IMAGE=ghcr.io/${GITHUB_REPOSITORY}
-          DOCKER_PLATFORMS=linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le,linux/s390x
+          DOCKER_PLATFORMS=linux/amd64
 
           VERSION=$(echo ${GITHUB_REF#refs/*/} | sed 's/\//-/g') # Replace / with - in tag name
           TAGS="${GITHUB_REPOSITORY}:${VERSION}"
@@ -63,7 +63,11 @@ jobs:
       # Step 5.5: Login to GitHub Container Registry
       - name: Login to GHCR
         if: github.event_name != 'pull_request'
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       # Step 6: Debug Build
       - name: Debug Build on PR
