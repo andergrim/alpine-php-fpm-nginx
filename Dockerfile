@@ -8,6 +8,8 @@ RUN apk --no-cache add \
         php82-opcache \
         php82-pecl-apcu \
         php82-mysqli \
+        php82-pdo \
+        php82-pdo-mysql \
         php82-pgsql \
         php82-json \
         php82-openssl \
