@@ -11,6 +11,7 @@ RUN apk --no-cache add \
         php82-pdo \
         php82-pdo_mysql \
         php82-pgsql \
+        php82-pecl-redis \
         php82-json \
         php82-openssl \
         php82-curl \
