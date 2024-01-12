@@ -34,6 +34,7 @@ RUN apk --no-cache add \
         nginx \
         runit \
         curl \
+        python3 \
 # Bring in gettext so we can get `envsubst`, then throw
 # the rest away. To do this, we need to install `gettext`
 # then move `envsubst` out of the way so `gettext` can
